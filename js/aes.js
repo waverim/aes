@@ -76,7 +76,7 @@ function sub_word (sw) {
         var val = s_box[row][col];
         val = val.toString(2);
         for (j = 0; j < 8; ++j) {
-            temp[i+j] = val.charAt(1) || 0
+            temp[i+j] = val.charAt(j) || 0
         }
     }
     result = "";
