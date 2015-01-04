@@ -47,67 +47,82 @@ function word () {
         result += arguments[i];
     }
 
-    return result;
+    return result >>> 0;
 }
 
 //循环左移一位
 function rot_word (rw) {
     var high = rw << 8,
-        low = rw >> 24;
-    return high | low;
+        low = rw >>> 24;
+    return (high | low) >>> 0;
 }
 
 function sub_word (sw) {
-    var temp = new Array(8 + 1).join('0').split(''),
+    var temp = new Array(32 + 1).join('0').split(''),
         str = sw.toString(2),
         sw = "00000000000000000000000000000000";
     
     sw = sw.substr(0, 32 - str.length) + str;
-    
     for (var i = 0; i < 32; i += 8) {
-        var row = parseInt(sw[i+7], 16) * 8
-                + parseInt(sw[i+6], 16) * 4
-                + parseInt(sw[i+5], 16) * 2
-                + parseInt(sw[i+4], 16);
-        var col = parseInt(sw[i+3], 16) * 8
-                + parseInt(sw[i+2], 16) * 4
-                + parseInt(sw[i+1], 16) * 2
-                + parseInt(sw[i], 16);
+        var row = parseInt(sw[31-(i+7)], 16) * 8
+                + parseInt(sw[31-(i+6)], 16) * 4
+                + parseInt(sw[31-(i+5)], 16) * 2
+                + parseInt(sw[31-(i+4)], 16);
+        var col = parseInt(sw[31-(i+3)], 16) * 8
+                + parseInt(sw[31-(i+2)], 16) * 4
+                + parseInt(sw[31-(i+1)], 16) * 2
+                + parseInt(sw[31-(i)], 16);
         var val = s_box[row][col];
         val = val.toString(2);
-        for (j = 0; j < 8; ++j) {
-            temp[i+j] = val.charAt(j) || 0
+        var t = "00000000"
+        val = t.substr(0, 8-val.length) + val;
+        for (var j = 0; j < 8; ++j) {
+            temp[31-(i+j)] = val[7-j] || 0
         }
     }
-    result = "";
+
+    var result = "";
     for (var i in temp) {
         result += temp[i];
     }
-    return result
+    return parseInt(result, 2)
 }
 
 function key_expansion(key) {
-    var temp = new Array(8 + 1).join('0').split(''),
+    var temp,
         w = new Array(4 * (round_number + 1) + 1).join('0').split('');
 
     for (var i = 0; i < key_number; ++i) {
         w[i] = word(
-            key.charAt(4 * i),
-            key.charAt(4 * i + 1),
-            key.charAt(4 * i + 2),
-            key.charAt(4 * i + 3)
-        )
+            key[4 * i],
+            key[4 * i + 1],
+            key[4 * i + 2],
+            key[4 * i + 3]
+        );
     }
 
     for (var i = key_number; i < 4 * (round_number + 1); ++i) {
-
+        temp = w[i-1];
+        if (i % key_number == 0) {
+            w[i] = w[i - key_number] ^ sub_word(rot_word(temp)) ^ r_con[i / key_number - 1]
+        } else {
+            w[i] = w[i - key_number] ^ temp;
+        }
+        w[i] >>>= 0
     }
+
+    return w
 }
 
-var w = word(0xa,0x0b,0x0c,0x0d);
-console.log("w" + w.toString(16));
-r = rot_word(w);
-console.log("r" + r.toString(16));
-s = sub_word(r);
-console.log(s.toString(16));
-key_expansion(s);
+var key = new Array(
+    0x2b, 0x7e, 0x15, 0x16,
+    0x28, 0xae, 0xd2, 0xa6,
+    0xab, 0xf7, 0x15, 0x88,
+    0x09, 0xcf, 0x4f, 0x3c);
+
+// test
+result = key_expansion(key);
+for (var i in result) {
+    console.log(i + " " + result[i].toString(16))
+}
+
