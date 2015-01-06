@@ -1,0 +1,12 @@
+body {
+    font-family: Monaco;
+}
+
+input.key {
+    width: 400px;
+
+}
+
+.error {
+    color: #f00;
+}

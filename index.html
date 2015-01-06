@@ -3,10 +3,29 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title></title>
+    <link rel="stylesheet" type="text/css" href="css/index.css">
 </head>
 <body>
+    <div>
+        <p>key 2b7e151628aed2a6abf7158809cf4f3c</p>
+        <p>plain 328831e0435a3137f6309807a88da234</p>
+        <p>key: <input type="text" class="key" id="key"></p>
+        <p>明文: <textarea type="text" class="key" id="plain"></textarea></p>
+        <p class="error" id="error"></p>
+
+        <p><button id="btn-encrypt">加密</button></p>
+        <p><output id="output-encrypt"></output></p>
+
+        <p><button id="btn-decrypt">解密</button></p>
+        <p><output id="output-decrypt"></output></p>
+    </div>
+
+
     <input type="file" id="file"/>
     <output id="list"></output>
+
+    <script src="js/aes.js"></script>
+    <script src="js/index.js"></script>
 
     <script>
         file = document.getElementById('file').addEventListener('change', handleFileSelect, false);
