@@ -84,7 +84,7 @@ function sub_bytes (m) {
     }
 }
 
-//提取num从右往左第k位的数字
+//提取num从右往左第k位的a<<<数字
 function pick(num, k) {
     return (num >>> k) - ((num >>> (k+1)) << 1);
 }
@@ -96,7 +96,7 @@ function shift_rows(m) {
     for (var i = 0; i < 3; ++i) {
         m[i + 4] = m[i + 5]
     }
-    m[i + 7] = temp;
+    m[7] = temp;
 
     // 第三行循环左移两位
     for (var i = 0; i < 2; ++i) {
@@ -141,11 +141,11 @@ function mix_columns(m) {
         for (var j = 0; j < 4; ++j) {
             arr[j] = m[i + j * 4]
         }
-        console.log("arr" + arr.toString(10))
-        m[i] = gf_mul(0x02, arr[0]) ^ gf_mul(0x03, arr[1]) ^ arr[2] ^ arr[3];
-        m[i+4] = arr[0] ^ gf_mul(0x02, arr[1]) ^ gf_mul(0x03, arr[2]) ^ arr[3];
-        m[i+8] = arr[0] ^ arr[1] ^ gf_mul(0x02, arr[2]) ^ gf_mul(0x03, arr[3]);
-        m[i+12] = gf_mul(0x03, arr[0]) ^ arr[1] ^ arr[2] ^ gf_mul(0x02, arr[3]);
+
+        m[i] = (gf_mul(0x02, arr[0]) ^ gf_mul(0x03, arr[1]) ^ arr[2] ^ arr[3])%256;
+        m[i+4] = (arr[0] ^ gf_mul(0x02, arr[1]) ^ gf_mul(0x03, arr[2]) ^ arr[3])%256;
+        m[i+8] = (arr[0] ^ arr[1] ^ gf_mul(0x02, arr[2]) ^ gf_mul(0x03, arr[3]))%256;
+        m[i+12] = (gf_mul(0x03, arr[0]) ^ arr[1] ^ arr[2] ^ gf_mul(0x02, arr[3]))%256;
     }
 }
 
@@ -156,7 +156,7 @@ function add_round_key (m, k) {
             k2 = (k[i] << 8) >>> 24,
             k3 = (k[i] << 16) >>> 24,
             k4 = (k[i] << 24) >>> 24;
-//console.log(k1.toString(16) + " " + k2.toString(16) + " " + k3.toString(16) + " " + k4.toString(16))
+
         m[i] = m[i] ^ k1;
         m[i+4] = m[i+4] ^ k2;
         m[i+8] = m[i+8] ^ k3;
@@ -175,14 +175,8 @@ function encrypt (input, w) {
 
     for (var round = 1; round < round_number; ++round) {
         sub_bytes(input);
-        //for (var i in input)console.log(input[i].toString(16));
-        //console.log(" ===== ")
         shift_rows(input);
-        //for (var i in input)console.log(input[i].toString(16));
-        //console.log(" ===== ")
         mix_columns(input);
-        for (var i in input)console.log(input[i].toString(16));
-        console.log(" ===== ")
         for (var i = 0; i < 4; ++i) {
             key[i] = w[4 * round + i];
         }
@@ -195,8 +189,6 @@ function encrypt (input, w) {
         key[i] = w[4 * round_number + i];
     }
     add_round_key(input, key);
-
-    return input
 }
 
 
@@ -290,17 +282,15 @@ function fill (num, length) {
     return temp.substr(0, length - num.length) + num;
 }
 
+// test
+
 var key = new Array(
     0x2b, 0x7e, 0x15, 0x16,
     0x28, 0xae, 0xd2, 0xa6,
     0xab, 0xf7, 0x15, 0x88,
     0x09, 0xcf, 0x4f, 0x3c);
 
-// test
 var w = key_expansion(key);
-//for (var i in result) {
-//    console.log(i + " " + result[i].toString(16))
-//}
 
 var plain = new Array(
     0x32, 0x88, 0x31, 0xe0,
@@ -308,7 +298,8 @@ var plain = new Array(
     0xf6, 0x30, 0x98, 0x07,
     0xa8, 0x8d, 0xa2, 0x34);
 
-result = encrypt(plain, w);
-//console.log(result)
+encrypt(plain, w);
 
-//console.log(sub_bytes(plain))
+for (var i in plain) {
+    console.log(i + " " + plain[i].toString(16))
+}
