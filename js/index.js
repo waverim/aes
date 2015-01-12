@@ -28,8 +28,8 @@ encrypt_btn.onclick = function () {
     }
 
     for (var i = 0; i < 32; i += 2) {
-        key[i/2] = parseInt((key_value.charAt(i) + key_value.charAt(i+1)), 16);
-        plain[i/2] = parseInt((plain_value.charAt(i) + plain_value.charAt(i+1)), 16);
+        key[i/2] = parseInt((key_value.charAt(i) + key_value.charAt(i+1) ), 16);
+        plain[i/2] = parseInt((plain_value.charAt(i) + (plain_value.charAt(i+1) || '0')), 16);
     }
 
     var w = key_expansion(key);
@@ -47,7 +47,7 @@ encrypt_btn.onclick = function () {
 
 
 decrypt_btn.onclick = function () {
-    output_decrypt.innerHTML = ""
+    output_decrypt.innerHTML = "";
 
     cipher_value = output_encrypt.innerHTML;
 
