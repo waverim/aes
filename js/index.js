@@ -47,7 +47,7 @@ encrypt_btn.onclick = function () {
 
 
 decrypt_btn.onclick = function () {
-    output_decrypt.innerHTML = "";
+    output_decrypt.innerHTML = ""
 
     cipher_value = output_encrypt.innerHTML;
 
