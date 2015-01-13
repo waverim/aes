@@ -6,11 +6,12 @@
     <link rel="stylesheet" type="text/css" href="css/index.css">
 </head>
 <body>
-    <div>
-        <p>key 2b7e151628aed2a6abf7158809cf4f3c</p>
-        <p>plain 328831e0435a3137f6309807a88da234</p>
-        <p>key: <input type="text" class="key" id="key"></p>
-        <p>明文: <textarea type="text" class="key" id="plain"></textarea></p>
+    <div class="string">
+        <h1>字符串加密解密</h1>
+        <p class="hide">key 2b7e151628aed2a6abf7158809cf4f3c</p>
+        <p class="hide">plain 328831e0435a3137f6309807a88da234</p>
+        <p>密钥: <input type="text" class="key" id="key"></p>
+        <p>明文: <input type="text" class="key" id="plain"></p>
         <p class="error" id="error"></p>
 
         <p><button id="btn-encrypt">加密</button></p>
@@ -20,26 +21,27 @@
         <p><output id="output-decrypt"></output></p>
     </div>
 
+    <div class="file">
+        <h1>文件加密解密</h1>
+        <p>
+            <input type="radio" id="radio3" name="en" value="en" /> 加密
+            <input type="radio" id="radio4" name="en" value="de" /> 解密
+        </p>
+        <p>请选择文件：<input type="file" id="file"/></p>
 
-    <input type="file" id="file"/>
-    <output id="list"></output>
+        <p><button id="btn-file-encrypt" disabled="disabled">文件加密</button></p>
+        <p class="hide"><output id="output-file-encrypt"></output></p>
+
+        <p><button id="btn-file-decrypt" disabled="disabled">文件解密</button></p>
+        <p class="hide"><output id="output-file-decrypt"></output></p>
+
+        <p>
+            <a id="download" class="hide" download="">下载</a>
+        </p>
+    </div>
 
     <script src="js/aes.js"></script>
     <script src="js/index.js"></script>
-
-    <script>
-        file = document.getElementById('file').addEventListener('change', handleFileSelect, false);
-        function handleFileSelect(event) {
-            var files = event.target.files;
-            var fr = new FileReader();
-            fr.addEventListener("load", function(event) {
-                var textFile = event.target;
-                var output = document.getElementById("list")
-                output.innerText = textFile.result;
-            });
-            fr.readAsText(files[0]);
-        }
-
-    </script>
+    <script src="js/file.js"></script>
 </body>
 </html>
