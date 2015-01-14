@@ -1,13 +1,21 @@
 body {
     font-family: Monaco;
+    text-align: center;
 }
 
 .hide {
     display: none;
 }
 
+.section {
+    width: 48%;
+    border-top: 1px solid #e5e5e5;
+    margin-top: 32px;
+    float: left;
+}
+
 .string {
-    border-bottom: 1px solid #e5e5e5;
+    border-right: 1px solid #e5e5e5;
 }
 
 input[type="text"] {

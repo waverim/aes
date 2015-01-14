@@ -188,6 +188,8 @@ function encrypt (input, w) {
         key[i] = w[i];
     }
 
+    transpose(input);
+
     add_round_key(input, key);
 
     for (var round = 1; round < round_number; ++round) {
@@ -206,6 +208,8 @@ function encrypt (input, w) {
         key[i] = w[4 * round_number + i];
     }
     add_round_key(input, key);
+
+    transpose(input);
 }
 
 /*
@@ -280,6 +284,9 @@ function decrypt(input, w) {
     for (var i = 0; i < 4; ++i) {
         key[i] = w[4 * round_number + i];
     }
+
+    transpose(input);
+
     add_round_key(input, key);
 
     for(var round = round_number - 1; round > 0; --round) {
@@ -298,6 +305,8 @@ function decrypt(input, w) {
         key[i] = w[i];
     }
     add_round_key(input, key);
+
+    transpose(input);
 }
 
 /*
@@ -422,6 +431,25 @@ function fill (num, length) {
         temp += '0'
     }
     return temp.substr(0, length - num.length) + num;
+}
+
+/*
+ * 矩阵转置
+ * 输入：m：长度为16的数组
+ * 输出：转置后的数组
+ */
+function transpose (m) {
+    function swap (a, b) {
+        var temp;
+        temp = m[a]; m[a] = m[b]; m[b] = temp;
+    }
+
+    swap(1,4);
+    swap(2,8);
+    swap(3,12);
+    swap(6,9);
+    swap(7,13);
+    swap(11,14);
 }
 
 // test

@@ -6,11 +6,20 @@
     <link rel="stylesheet" type="text/css" href="css/index.css">
 </head>
 <body>
-    <div class="string">
-        <h1>字符串加密解密</h1>
-        <p class="hide">key 2b7e151628aed2a6abf7158809cf4f3c</p>
-        <p class="hide">plain 328831e0435a3137f6309807a88da234</p>
-        <p>密钥: <input type="text" class="key" id="key"></p>
+    <p class="error hide" id="ie">您现在使用的是IE内核的浏览器，或者是版本较低的浏览器。<br>
+        由于我的技术原因，其中文件加密解密存在问题，请切换到其他浏览器，或更新浏览器<br>
+        <a href="http://www.google.cn/intl/zh-CN/chrome/browser/desktop/index.html">Chrome</a><br>
+        <a href="http://www.firefox.com.cn/download/">Firefox</a><br>
+        若是双核浏览器，请调整到高速模式
+    </p>
+
+    <h1>AES加密解密系统</h1>
+
+    <p>密钥: <input type="text" class="key" id="key"></p>
+
+    <div class="section string">
+        <h3>字符串加密解密</h3>
+
         <p>明文: <input type="text" class="key" id="plain"></p>
         <p class="error" id="error"></p>
 
@@ -21,8 +30,8 @@
         <p><output id="output-decrypt"></output></p>
     </div>
 
-    <div class="file">
-        <h1>文件加密解密</h1>
+    <div class="section">
+        <h3>文件加密解密</h3>
         <p>
             <input type="radio" id="radio3" name="en" value="en" /> 加密
             <input type="radio" id="radio4" name="en" value="de" /> 解密

@@ -1,10 +1,12 @@
-
-if (! (window.File && window.FileReader && window.FileList && window.Blob)) {
-    alert('The File APIs are not fully supported in this browser.');
-}
-
 var $ = function (s) {
     return document.getElementById(s);
+}
+
+if (! (window.File && window.FileReader && window.FileList && window.Blob)) {
+    $("ie").style.display = "block";
+}
+if ( false || !!document.documentMode ) {
+    $("ie").style.display = "block";
 }
 
 var key_input = $("key");
@@ -55,6 +57,8 @@ function handleFileSelect(event) {
 }
 
 encrypt_file_btn.onclick = function () {
+    output_file_encrypt.innerHTML = "";
+
     var key = new Array(16 + 1).join('0').split('');
 
     key_value = key_input.value;
@@ -100,6 +104,8 @@ function file_encode (key, str) {
 }
 
 decrypt_file_btn.onclick = function () {
+    output_file_decrypt.innerHTML = "";
+
     var key = new Array(16 + 1).join('0').split('');
 
     key_value = key_input.value;
