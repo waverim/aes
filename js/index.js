@@ -1,20 +1,31 @@
-var key_input = document.getElementById("key"),
-    plain_input = document.getElementById("plain");
+var $ = function (s) {
+    return document.getElementById(s);
+}
+
+var key_input = $("key"),
+    plain_input = $("plain");
 
 var key_value,
     plain_value,
     cipher_value;
 
-var output_encrypt = document.getElementById("output-encrypt"),
-    output_decrypt = document.getElementById("output-decrypt");
+var output_encrypt = $("output-encrypt"),
+    output_decrypt = $("output-decrypt"),
+    output_step = $("output-step");
 
-var encrypt_btn = document.getElementById("btn-encrypt"),
-    decrypt_btn = document.getElementById("btn-decrypt");
+var encrypt_btn = $("btn-encrypt"),
+    decrypt_btn = $("btn-decrypt");
 
-var error = document.getElementById("error");
+var error = $("error");
 
 encrypt_btn.onclick = function () {
-    output_encrypt.innerHTML = error.innerHTML = "";
+    output_encrypt.innerHTML
+        = output_decrypt.innerHTML
+        = error.innerHTML
+        = output_step.innerHTML
+        = "";
+
+    get_output_place(output_step);
 
     var key = new Array(16 + 1).join('0').split(''),
         plain = new Array(16 + 1).join('0').split('');
@@ -47,9 +58,14 @@ encrypt_btn.onclick = function () {
 
 
 decrypt_btn.onclick = function () {
-    output_decrypt.innerHTML = ""
+    output_decrypt.innerHTML
+        = error.innerHTML
+        = output_step.innerHTML
+        = "";
 
     cipher_value = output_encrypt.innerHTML;
+
+    get_output_place(output_step);
 
     var key = new Array(16 + 1).join('0').split(''),
         cipher = new Array(16 + 1).join('0').split('');

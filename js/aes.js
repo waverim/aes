@@ -189,27 +189,33 @@ function encrypt (input, w) {
     }
 
     transpose(input);
-
+    output("输入明文", input);
     add_round_key(input, key);
-
+    output("add_round_key", input);
     for (var round = 1; round < round_number; ++round) {
         sub_bytes(input);
+        output("sub_bytes", input);
         shift_rows(input);
+        output("shift_rows", input);
         mix_columns(input);
+        output("mix_columns", input);
         for (var i = 0; i < 4; ++i) {
             key[i] = w[4 * round + i];
         }
         add_round_key(input, key);
+        output("add_round_key", input);
     }
 
     sub_bytes(input);
+    output("sub_bytes", input);
     shift_rows(input);
+    output("shift_rows", input);
     for (var i = 0; i < 4; ++i){
         key[i] = w[4 * round_number + i];
     }
     add_round_key(input, key);
-
     transpose(input);
+    output("add_round_key", input);
 }
 
 /*
@@ -286,27 +292,33 @@ function decrypt(input, w) {
     }
 
     transpose(input);
-
+    output("输入明文", input);
     add_round_key(input, key);
-
+    output("add_round_key", input);
     for(var round = round_number - 1; round > 0; --round) {
         inv_shift_rows(input);
+        output("inv_shift_rows", input);
         inv_sub_bytes(input);
+        output("inv_sub_bytes", input);
         for (var i = 0; i < 4; ++i) {
             key[i] = w[4 * round + i];
         }
         add_round_key(input, key);
+        output("add_round_key", input);
         inv_mix_columns(input);
+        output("inv_mix_columns", input);
     }
 
     inv_shift_rows(input);
+    output("inv_shift_rows", input);
     inv_sub_bytes(input);
+    output("inv_sub_bytes", input);
     for (var i = 0; i < 4; ++i) {
         key[i] = w[i];
     }
     add_round_key(input, key);
-
     transpose(input);
+    output("add_round_key", input);
 }
 
 /*
@@ -451,6 +463,28 @@ function transpose (m) {
     swap(7,13);
     swap(11,14);
 }
+
+
+var step_out_place;
+
+function get_output_place (p) {
+    step_out_place = p;
+}
+
+function output (type, m) {
+    var result = "";
+    result += type;
+    result += "<br>";
+    for (var i in m) {
+
+        result += m[i].toString(16);
+        result += " ";
+    }
+    result += "<br><br>";
+    step_out_place.innerHTML += result;
+}
+
+
 
 // test
 /*
