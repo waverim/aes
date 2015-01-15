@@ -464,13 +464,25 @@ function transpose (m) {
     swap(11,14);
 }
 
-
+/*
+ * 步骤输出
+ */
 var step_out_place;
 
+/*
+ * 获取输出DOM元素
+ * 输入：DOM元素
+ */
 function get_output_place (p) {
     step_out_place = p;
 }
 
+/*
+ * 步骤输出
+ * 输入：type: 输出类型
+ *      m: 长度为16的数组
+ * 输出：对应格式的结果
+ */
 function output (type, m) {
     var result = "";
     result += type;
@@ -483,8 +495,6 @@ function output (type, m) {
     result += "<br><br>";
     step_out_place.innerHTML += result;
 }
-
-
 
 // test
 /*
