@@ -25,7 +25,7 @@ encrypt_btn.onclick = function () {
         = output_step.innerHTML
         = "";
 
-    get_output_place(output_step);
+    get_output_place("string", output_step);
 
     var key = new Array(16 + 1).join('0').split(''),
         plain = new Array(16 + 1).join('0').split('');
@@ -65,7 +65,7 @@ decrypt_btn.onclick = function () {
 
     cipher_value = output_encrypt.innerHTML;
 
-    get_output_place(output_step);
+    get_output_place("string", output_step);
 
     var key = new Array(16 + 1).join('0').split(''),
         cipher = new Array(16 + 1).join('0').split('');

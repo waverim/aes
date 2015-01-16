@@ -467,13 +467,15 @@ function transpose (m) {
 /*
  * 步骤输出
  */
-var step_out_place;
+var step_out_place,
+    cry_type;
 
 /*
  * 获取输出DOM元素
  * 输入：DOM元素
  */
-function get_output_place (p) {
+function get_output_place (t, p) {
+    cry_type = t;
     step_out_place = p;
 }
 
@@ -484,16 +486,18 @@ function get_output_place (p) {
  * 输出：对应格式的结果
  */
 function output (type, m) {
-    var result = "";
-    result += type;
-    result += "<br>";
-    for (var i in m) {
+    if (cry_type == "string") {
+        var result = "";
+        result += type;
+        result += "<br>";
+        for (var i in m) {
 
-        result += m[i].toString(16);
-        result += " ";
+            result += m[i].toString(16);
+            result += " ";
+        }
+        result += "<br><br>";
+        step_out_place.innerHTML += result;
     }
-    result += "<br><br>";
-    step_out_place.innerHTML += result;
 }
 
 // test

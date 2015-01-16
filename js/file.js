@@ -59,6 +59,8 @@ function handleFileSelect(event) {
 encrypt_file_btn.onclick = function () {
     output_file_encrypt.innerHTML = "";
 
+    get_output_place("file", null);
+
     var key = new Array(16 + 1).join('0').split('');
 
     key_value = key_input.value;
@@ -105,6 +107,8 @@ function file_encode (key, str) {
 
 decrypt_file_btn.onclick = function () {
     output_file_decrypt.innerHTML = "";
+
+    get_output_place("file", null);
 
     var key = new Array(16 + 1).join('0').split('');
 
