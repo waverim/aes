@@ -2,6 +2,7 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
+<<<<<<< HEAD
     <title></title>
     <link rel="stylesheet" type="text/css" href="css/index.css">
 </head>
@@ -11,6 +12,29 @@
         <p>plain 328831e0435a3137f6309807a88da234</p>
         <p>key: <input type="text" class="key" id="key"></p>
         <p>明文: <textarea type="text" class="key" id="plain"></textarea></p>
+=======
+    <title>AES加密解密系统</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+</head>
+<body>
+    <p class="error hide" id="ie">您现在使用的是IE内核的浏览器，或者是版本较低的浏览器。<br>
+        由于我的技术原因，其中文件加密解密存在问题，请切换到其他浏览器，或更新浏览器<br>
+        <a href="http://www.google.cn/intl/zh-CN/chrome/browser/desktop/index.html">Chrome</a><br>
+        <a href="http://www.firefox.com.cn/download/">Firefox</a><br>
+        若是双核浏览器，请调整到高速模式
+    </p>
+
+    <h1>AES加密解密系统</h1>
+
+    <p>密钥: <input type="text" class="key" id="key"></p>
+
+    <div class="section string">
+        <h3>字符串加密解密</h3>
+
+        <p>明文: <input type="text" class="key" id="plain"></p>
+>>>>>>> gh-pages
         <p class="error" id="error"></p>
 
         <p><button id="btn-encrypt">加密</button></p>
@@ -18,6 +42,7 @@
 
         <p><button id="btn-decrypt">解密</button></p>
         <p><output id="output-decrypt"></output></p>
+<<<<<<< HEAD
     </div>
 
 
@@ -41,5 +66,33 @@
         }
 
     </script>
+=======
+
+        <p class="output-step">具体步骤<br><br><output id="output-step"></output></p>
+    </div>
+
+    <div class="section">
+        <h3>文件加密解密</h3>
+        <p>
+            <input type="radio" id="radio3" name="en" value="en" /> 加密
+            <input type="radio" id="radio4" name="en" value="de" /> 解密
+        </p>
+        <p>请选择文件：<input type="file" id="file"/></p>
+
+        <p><button id="btn-file-encrypt" disabled="disabled">文件加密</button></p>
+        <p class="hide"><output id="output-file-encrypt"></output></p>
+
+        <p><button id="btn-file-decrypt" disabled="disabled">文件解密</button></p>
+        <p class="hide"><output id="output-file-decrypt"></output></p>
+
+        <p>
+            <a id="download" class="hide" download="">下载</a>
+        </p>
+    </div>
+
+    <script src="js/aes.js"></script>
+    <script src="js/index.js"></script>
+    <script src="js/file.js"></script>
+>>>>>>> gh-pages
 </body>
 </html>

@@ -1,10 +1,20 @@
+<<<<<<< HEAD
 var key_input = document.getElementById("key"),
     plain_input = document.getElementById("plain");
+=======
+var $ = function (s) {
+    return document.getElementById(s);
+}
+
+var key_input = $("key"),
+    plain_input = $("plain");
+>>>>>>> gh-pages
 
 var key_value,
     plain_value,
     cipher_value;
 
+<<<<<<< HEAD
 var output_encrypt = document.getElementById("output-encrypt"),
     output_decrypt = document.getElementById("output-decrypt");
 
@@ -15,6 +25,25 @@ var error = document.getElementById("error");
 
 encrypt_btn.onclick = function () {
     output_encrypt.innerHTML = error.innerHTML = "";
+=======
+var output_encrypt = $("output-encrypt"),
+    output_decrypt = $("output-decrypt"),
+    output_step = $("output-step");
+
+var encrypt_btn = $("btn-encrypt"),
+    decrypt_btn = $("btn-decrypt");
+
+var error = $("error");
+
+encrypt_btn.onclick = function () {
+    output_encrypt.innerHTML
+        = output_decrypt.innerHTML
+        = error.innerHTML
+        = output_step.innerHTML
+        = "";
+
+    get_output_place("string", output_step);
+>>>>>>> gh-pages
 
     var key = new Array(16 + 1).join('0').split(''),
         plain = new Array(16 + 1).join('0').split('');
@@ -28,8 +57,13 @@ encrypt_btn.onclick = function () {
     }
 
     for (var i = 0; i < 32; i += 2) {
+<<<<<<< HEAD
         key[i/2] = parseInt((key_value.charAt(i) + key_value.charAt(i+1)), 16);
         plain[i/2] = parseInt((plain_value.charAt(i) + plain_value.charAt(i+1)), 16);
+=======
+        key[i/2] = parseInt((key_value.charAt(i) + key_value.charAt(i+1) ), 16);
+        plain[i/2] = parseInt((plain_value.charAt(i) + (plain_value.charAt(i+1) || '0')), 16);
+>>>>>>> gh-pages
     }
 
     var w = key_expansion(key);
@@ -47,10 +81,22 @@ encrypt_btn.onclick = function () {
 
 
 decrypt_btn.onclick = function () {
+<<<<<<< HEAD
     output_decrypt.innerHTML = ""
 
     cipher_value = output_encrypt.innerHTML;
 
+=======
+    output_decrypt.innerHTML
+        = error.innerHTML
+        = output_step.innerHTML
+        = "";
+
+    cipher_value = output_encrypt.innerHTML;
+
+    get_output_place("string", output_step);
+
+>>>>>>> gh-pages
     var key = new Array(16 + 1).join('0').split(''),
         cipher = new Array(16 + 1).join('0').split('');
 

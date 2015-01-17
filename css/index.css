@@ -1,12 +1,49 @@
 body {
     font-family: Monaco;
+<<<<<<< HEAD
 }
 
 input.key {
     width: 400px;
 
+=======
+    text-align: center;
+}
+
+.hide {
+    display: none;
+}
+
+.section {
+    width: 48%;
+    border-top: 1px solid #e5e5e5;
+    margin-top: 32px;
+    float: left;
+}
+
+.string {
+    border-right: 1px solid #e5e5e5;
+}
+
+input[type="text"] {
+    width: 400px;
+>>>>>>> gh-pages
 }
 
 .error {
     color: #f00;
+<<<<<<< HEAD
+=======
+}
+
+.output-step {
+    font-size: 14px;
+    color: #666;
+    border-top: 1px solid #e5e5e5;
+    border-bottom: 1px solid #e5e5e5;
+    margin-bottom: 0;
+    padding-top: 1em;
+    height: 300px;
+    overflow: scroll;
+>>>>>>> gh-pages
 }
