@@ -188,14 +188,6 @@ function encrypt (input, w) {
         key[i] = w[i];
     }
 
-<<<<<<< HEAD
-    add_round_key(input, key);
-
-    for (var round = 1; round < round_number; ++round) {
-        sub_bytes(input);
-        shift_rows(input);
-        mix_columns(input);
-=======
     transpose(input);
     output("输入明文", input);
     add_round_key(input, key);
@@ -207,17 +199,10 @@ function encrypt (input, w) {
         output("shift_rows", input);
         mix_columns(input);
         output("mix_columns", input);
->>>>>>> gh-pages
         for (var i = 0; i < 4; ++i) {
             key[i] = w[4 * round + i];
         }
         add_round_key(input, key);
-<<<<<<< HEAD
-    }
-
-    sub_bytes(input);
-    shift_rows(input);
-=======
         output("add_round_key", input);
     }
 
@@ -225,16 +210,12 @@ function encrypt (input, w) {
     output("sub_bytes", input);
     shift_rows(input);
     output("shift_rows", input);
->>>>>>> gh-pages
     for (var i = 0; i < 4; ++i){
         key[i] = w[4 * round_number + i];
     }
     add_round_key(input, key);
-<<<<<<< HEAD
-=======
     transpose(input);
     output("add_round_key", input);
->>>>>>> gh-pages
 }
 
 /*
@@ -309,13 +290,6 @@ function decrypt(input, w) {
     for (var i = 0; i < 4; ++i) {
         key[i] = w[4 * round_number + i];
     }
-<<<<<<< HEAD
-    add_round_key(input, key);
-
-    for(var round = round_number - 1; round > 0; --round) {
-        inv_shift_rows(input);
-        inv_sub_bytes(input);
-=======
 
     transpose(input);
     output("输入明文", input);
@@ -326,18 +300,10 @@ function decrypt(input, w) {
         output("inv_shift_rows", input);
         inv_sub_bytes(input);
         output("inv_sub_bytes", input);
->>>>>>> gh-pages
         for (var i = 0; i < 4; ++i) {
             key[i] = w[4 * round + i];
         }
         add_round_key(input, key);
-<<<<<<< HEAD
-        inv_mix_columns(input);
-    }
-
-    inv_shift_rows(input);
-    inv_sub_bytes(input);
-=======
         output("add_round_key", input);
         inv_mix_columns(input);
         output("inv_mix_columns", input);
@@ -347,16 +313,12 @@ function decrypt(input, w) {
     output("inv_shift_rows", input);
     inv_sub_bytes(input);
     output("inv_sub_bytes", input);
->>>>>>> gh-pages
     for (var i = 0; i < 4; ++i) {
         key[i] = w[i];
     }
     add_round_key(input, key);
-<<<<<<< HEAD
-=======
     transpose(input);
     output("add_round_key", input);
->>>>>>> gh-pages
 }
 
 /*
@@ -483,8 +445,6 @@ function fill (num, length) {
     return temp.substr(0, length - num.length) + num;
 }
 
-<<<<<<< HEAD
-=======
 /*
  * 矩阵转置
  * 输入：m：长度为16的数组
@@ -540,7 +500,6 @@ function output (type, m) {
     }
 }
 
->>>>>>> gh-pages
 // test
 /*
 var key = [

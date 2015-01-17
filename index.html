@@ -2,17 +2,6 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-<<<<<<< HEAD
-    <title></title>
-    <link rel="stylesheet" type="text/css" href="css/index.css">
-</head>
-<body>
-    <div>
-        <p>key 2b7e151628aed2a6abf7158809cf4f3c</p>
-        <p>plain 328831e0435a3137f6309807a88da234</p>
-        <p>key: <input type="text" class="key" id="key"></p>
-        <p>明文: <textarea type="text" class="key" id="plain"></textarea></p>
-=======
     <title>AES加密解密系统</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
@@ -34,7 +23,6 @@
         <h3>字符串加密解密</h3>
 
         <p>明文: <input type="text" class="key" id="plain"></p>
->>>>>>> gh-pages
         <p class="error" id="error"></p>
 
         <p><button id="btn-encrypt">加密</button></p>
@@ -42,31 +30,6 @@
 
         <p><button id="btn-decrypt">解密</button></p>
         <p><output id="output-decrypt"></output></p>
-<<<<<<< HEAD
-    </div>
-
-
-    <input type="file" id="file"/>
-    <output id="list"></output>
-
-    <script src="js/aes.js"></script>
-    <script src="js/index.js"></script>
-
-    <script>
-        file = document.getElementById('file').addEventListener('change', handleFileSelect, false);
-        function handleFileSelect(event) {
-            var files = event.target.files;
-            var fr = new FileReader();
-            fr.addEventListener("load", function(event) {
-                var textFile = event.target;
-                var output = document.getElementById("list")
-                output.innerText = textFile.result;
-            });
-            fr.readAsText(files[0]);
-        }
-
-    </script>
-=======
 
         <p class="output-step">具体步骤<br><br><output id="output-step"></output></p>
     </div>
@@ -93,6 +56,5 @@
     <script src="js/aes.js"></script>
     <script src="js/index.js"></script>
     <script src="js/file.js"></script>
->>>>>>> gh-pages
 </body>
 </html>

@@ -1,12 +1,5 @@
 body {
     font-family: Monaco;
-<<<<<<< HEAD
-}
-
-input.key {
-    width: 400px;
-
-=======
     text-align: center;
 }
 
@@ -27,13 +20,10 @@ input.key {
 
 input[type="text"] {
     width: 400px;
->>>>>>> gh-pages
 }
 
 .error {
     color: #f00;
-<<<<<<< HEAD
-=======
 }
 
 .output-step {
@@ -45,5 +35,4 @@ input[type="text"] {
     padding-top: 1em;
     height: 300px;
     overflow: scroll;
->>>>>>> gh-pages
 }
